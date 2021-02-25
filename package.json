@@ -1,0 +1,50 @@
+{
+	"name": "zenitech-task",
+	"version": "1.0.0",
+	"main": "src/index.ts",
+	"license": "MIT",
+	"author": "Levan Tsutskiridze",
+	"scripts": {
+		"start:dev": "webpack-cli serve --mode=development --env development --open --hot",
+		"start:build": "webpack --mode=production --env production --progress",
+		"lint": "eslint './src/**/*.{ts,tsx}'",
+		"lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.30",
+		"@types/react": "^17.0.2",
+		"@types/react-dom": "^17.0.1",
+		"@types/styled-components": "^5.1.7",
+		"@types/webpack": "^4.41.26",
+		"@types/webpack-dev-server": "^3.11.1",
+		"@typescript-eslint/eslint-plugin": "^4.15.1",
+		"@typescript-eslint/parser": "^4.15.1",
+		"eslint": "^7.20.0",
+		"eslint-config-prettier": "^7.2.0",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-prettier": "^3.3.1",
+		"eslint-plugin-react": "^7.22.0",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"fork-ts-checker-webpack-plugin": "^6.1.0",
+		"html-webpack-plugin": "^5.1.0",
+		"prettier": "^2.2.1",
+		"ts-loader": "^8.0.17",
+		"ts-node": "^9.1.1",
+		"tsconfig-paths-webpack-plugin": "^3.3.0",
+		"typescript": "^4.1.5",
+		"typescript-plugin-styled-components": "^1.4.4",
+		"webpack": "^5.23.0",
+		"webpack-cli": "^4.5.0",
+		"webpack-dev-server": "^3.11.2"
+	},
+	"dependencies": {
+		"nanoid": "^3.1.20",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-router-dom": "^5.2.0",
+		"styled-components": "^5.2.1"
+	},
+	"resolutions": {
+		"styled-components": "^5"
+	}
+}

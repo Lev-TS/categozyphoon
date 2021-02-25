@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"sourceMap": true, // Generate corrresponding .map file
+		"noImplicitAny": false, // fall back to a type of any for a variable when TS cannot infer the type
+		"module": "commonjs", // Specify module code generation
+		"target": "es5", // Specify ECMAScript target version
+		"lib": ["esnext", "dom", "dom.iterable"], // List of library files to be included in the compilation
+		"removeComments": true, // Strips all comments from TypeScript files when converting into JavaScript.
+		"allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+		"jsx": "react", // Support JSX in .tsx files
+		"allowJs": true, // Allow JavaScript files to be compiled
+		"baseUrl": "./", // set a base directory to resolve non-absolute module names
+		"esModuleInterop": true, // Disables namespace imports (import * as fs from "fs") and enables CJS/AMD/UMD style imports (import fs from "fs")
+		"resolveJsonModule": true, // Include modules imported with .json extension
+		"moduleResolution": "node", // Resolve modules using Node.js style
+		"downlevelIteration": true, // enable support for a more accurate implementation of iterations
+		"paths": { "components/*": ["src/components/*"] }, // entries which re-map imports to lookup locations relative to the baseUrl
+
+		"skipLibCheck": true, // Skip type checking of all declaration files
+		"strict": true, // Enable all strict type checking options
+		"forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file.
+		"isolatedModules": true, // Unconditionally emit imports for unresolved files
+		"noEmit": true, // Do not emit output (meaning do not compile code, only perform type checking)
+		"declaration": true, // Generate corresponding .d.ts file
+		"noUnusedLocals": true, // Report errors on unused locals
+		"noUnusedParameters": true, // Report errors on unused parameters
+		"incremental": true, // Enable incremental compilation by reading/writing information from prior compilations to a file on disk
+		"noFallthroughCasesInSwitch": true // Report errors for fallthrough cases in switch statement
+	},
+	"include": ["./src", "./webpack.config.ts"],
+	"exclude": ["node_modules", "dist"]
+}
