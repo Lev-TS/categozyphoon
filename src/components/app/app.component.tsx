@@ -7,6 +7,7 @@ import Header from '../header/header.component';
 import CollectionCardContainer from '../collection-card-container/collection-container.component';
 
 import { getSavedCollections, getGrandTotal, getTotal, Collection } from './app.utils';
+import ErrorBoundary from 'components/error-boundary/error-boundary.component';
 
 type Collections = { [key: string]: Collection } | Record<string, never>;
 
@@ -14,34 +15,34 @@ const App: FC = () => {
 	const [collections, setCollections] = useState<Collections>({});
 
 	useEffect(() => {
-		setCollections((currentCollections) => {
-			if (Object.keys(currentCollections).length === 0) return getSavedCollections();
-			return currentCollections;
+		setCollections((prevCollections) => {
+			if (Object.keys(prevCollections).length === 0) return getSavedCollections();
+			return prevCollections;
 		});
 	}, []);
 
 	const createCollection = (title: string, amount: number) => {
-		setCollections((currentCollections) => {
+		setCollections((prevCollections) => {
 			const id = nanoid();
 			const newCollection = { title, amount, items: {}, lists: {} };
-			const updatedCollections = { ...currentCollections, [id]: newCollection };
+			const updatedCollections = { ...prevCollections, [id]: newCollection };
 			localStorage.setItem('collections', JSON.stringify(updatedCollections));
 			return updatedCollections;
 		});
 	};
 
-	const updateCollection = (collectionId: string, changedCollection: Collection) => {
-		setCollections((currentCollections) => {
-			const updatedCollection = { ...changedCollection, amount: getTotal(changedCollection) };
-			const updatedCollections = { ...currentCollections, [collectionId]: updatedCollection };
+	const updateCollection = (key: string, collection: Collection) => {
+		setCollections((prevCollections) => {
+			const updatedCollection = { ...collection, amount: getTotal(collection) };
+			const updatedCollections = { ...prevCollections, [key]: updatedCollection };
 			localStorage.setItem('collections', JSON.stringify(updatedCollections));
 			return updatedCollections;
 		});
 	};
 
 	const removeCollection = (key: string) => {
-		setCollections((currentCollections) => {
-			const { [key]: collection, ...remainingCollections } = currentCollections;
+		setCollections((prevCollections) => {
+			const { [key]: collection, ...remainingCollections } = prevCollections;
 			localStorage.setItem('collections', JSON.stringify(remainingCollections));
 			return remainingCollections;
 		});
@@ -52,15 +53,17 @@ const App: FC = () => {
 			<GlobalStyle />
 			<Header levelTitle='categozyphoon' amount={getGrandTotal(collections)} />
 			<Main>
-				{Object.keys(collections).map((key) => (
-					<CollectionCardContainer
-						key={key}
-						collection={collections[key]}
-						match={{ path: `` }}
-						onChange={(changedCollection) => updateCollection(key, changedCollection)}
-						removeCollection={() => removeCollection(key)}
-					/>
-				))}
+				<ErrorBoundary>
+					{Object.keys(collections).map((key) => (
+						<CollectionCardContainer
+							key={key}
+							collection={collections[key]}
+							match={{ path: `` }}
+							onChange={(collection) => updateCollection(key, collection)}
+							removeCollection={() => removeCollection(key)}
+						/>
+					))}
+				</ErrorBoundary>
 				<StyledCustomButton
 					category='collection'
 					content='+ Create a collection'

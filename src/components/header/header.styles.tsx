@@ -12,6 +12,11 @@ export const Container = styled.div`
 	background-color: ${(props) => props.theme.colors.grey};
 	color: ${(props) => props.theme.colors.background};
 
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
 	> :first-child {
 		flex-grow: 2;
 	}

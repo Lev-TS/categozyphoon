@@ -14,7 +14,7 @@ const theme: DefaultTheme = {
 		white: '#FFFFFFF',
 		lightGrey: '#808080'
 	},
-	fontFamily: `'Lato', sans-serif`,
+	fontFamily: 'Lato, sans-serif',
 	cardListWidth: '272px'
 };
 
