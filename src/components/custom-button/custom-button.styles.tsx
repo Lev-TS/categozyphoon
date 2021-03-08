@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const CustomButtonContainer = styled.div`
+export const Container = styled.div`
 	width: 100%;
 	max-width: 272px;
 `;
@@ -35,13 +35,7 @@ const item = css`
 	}
 `;
 
-interface InitialButtonProps {
-	collection?: boolean;
-	item?: boolean;
-	list?: boolean;
-}
-
-export const InitialButton = styled.button<InitialButtonProps>`
+export const InitialButton = styled.button<{ category: string }>`
 	width: 100%;
 	font-weight: 400;
 	border-radius: 3px;
@@ -55,7 +49,7 @@ export const InitialButton = styled.button<InitialButtonProps>`
 	outline: 0;
 	overflow: hidden;
 
-	${(props) => props.collection && collection}
-	${(props) => props.list && list}
-	${(props) => props.item && item}
+	${(props) => props.category === 'collection' && collection}
+	${(props) => props.category === 'list' && list}
+	${(props) => props.category === 'item' && item}
 `;

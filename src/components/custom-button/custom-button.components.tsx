@@ -1,47 +1,35 @@
 import React, { FC, useState } from 'react';
 
 interface Props {
-	collection?: boolean;
-	list?: boolean;
-	item?: boolean;
-	text: string;
-	addNode: (title: string, amount?: number) => void;
+	category: string;
+	content: string;
 	className?: string;
+	addNode: (title: string, amount: number) => void;
 }
 
-import { InitialButton, CustomButtonContainer } from './custom-button.styles';
+import { InitialButton, Container } from './custom-button.styles';
 
 import CustomButtonForm from '../custom-button-form/custom-button-form.component';
 
-const CustomButton: FC<Props> = ({ collection, list, item, text, addNode, className }) => {
+const CustomButton: FC<Props> = ({ category, content, className, addNode }) => {
 	const [isActive, setIsActive] = useState<boolean>(false);
-	const toggleForm = () => setIsActive(!isActive);
-	let placeholder;
-	if (collection) placeholder = 'Enter collection name';
-	if (list) placeholder = 'Enter list name';
-	if (item) placeholder = 'Enter item name';
+	const toggleForm = () => setIsActive((currentState) => !currentState);
 
 	return (
-		<CustomButtonContainer className={className}>
+		<Container className={className}>
 			{!isActive ? (
-				<InitialButton
-					type='button'
-					onClick={toggleForm}
-					collection={collection}
-					list={list}
-					item={item}
-				>
-					{text}
+				<InitialButton type='button' onClick={toggleForm} category={category}>
+					{content}
 				</InitialButton>
 			) : (
 				<CustomButtonForm
 					toggleForm={toggleForm}
-					placeholder={placeholder}
-					item={item}
+					placeholder={`Enter ${category} name`}
+					item={category === 'item'}
 					addNode={addNode}
 				/>
 			)}
-		</CustomButtonContainer>
+		</Container>
 	);
 };
 

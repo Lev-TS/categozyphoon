@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ListSection = styled.div`
+export const Container = styled.div`
 	padding: 5px;
 `;
 

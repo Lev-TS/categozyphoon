@@ -1,6 +1,6 @@
-import { Node } from './collection-container.context';
+import { Collection } from './collection-container.context';
 
-export const assignAmount = (collection: Node): void => {
+export const setSubTotal = (collection: Collection): void => {
 	let subTotal = 0;
 	Object.keys(collection.items).map((key) => {
 		if (collection.items[key]) subTotal += collection.items[key].amount;
@@ -9,7 +9,7 @@ export const assignAmount = (collection: Node): void => {
 	if (lists.length > 0) {
 		lists.map((key) => {
 			if (collection.lists[key]) subTotal += collection.lists[key].amount;
-			assignAmount(collection.lists[key]);
+			setSubTotal(collection.lists[key]);
 		});
 	}
 	collection.amount = subTotal;

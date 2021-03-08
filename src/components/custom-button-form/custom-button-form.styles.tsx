@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const FormContainer = styled.form<{ item?: boolean }>`
+export const Container = styled.form<{ item?: boolean }>`
 	width: 100%;
 	min-height: 80px;
 	display: grid;

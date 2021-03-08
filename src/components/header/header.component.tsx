@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { HeaderContainer } from './header.styles';
+import { Container } from './header.styles';
 
 interface Props {
 	amount: number;
@@ -9,11 +9,11 @@ interface Props {
 
 const Header: FC<Props> = ({ levelTitle, amount }) => {
 	return (
-		<HeaderContainer>
+		<Container>
 			<h5>{levelTitle}</h5>
 			<h5>Total Sales:</h5>
 			<h5>&#8364; {`${amount.toFixed(2)}`}</h5>
-		</HeaderContainer>
+		</Container>
 	);
 };
 

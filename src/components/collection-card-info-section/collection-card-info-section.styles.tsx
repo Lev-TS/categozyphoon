@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InfoSection = styled.div`
+export const Container = styled.div`
 	margin-bottom: 20px;
 	padding: 5px;
 `;

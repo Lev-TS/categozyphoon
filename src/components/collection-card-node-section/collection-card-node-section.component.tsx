@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-import { useCollectionContainerContext } from 'components/collection-container/collection-container.context';
+import { useCollectionContainerContext } from 'components/collection-card-container/collection-container.context';
 
 import NodeCard from '../node-card/node-card.component';
 
-import { ListSection, SubTitle, Line, CardContainer } from './collection-card-node-section.styles';
+import { Container, SubTitle, Line, CardContainer } from './collection-card-node-section.styles';
 
 interface Props {
 	subTitle: string;
@@ -16,7 +16,7 @@ const CollectionCardNodeSection: FC<Props> = ({ subTitle, list }) => {
 	const children = list ? collection.lists : collection.items;
 	const childrenKeys = Object.keys(children);
 	return (
-		<ListSection>
+		<Container>
 			<SubTitle>{subTitle}</SubTitle>
 			<Line />
 			<CardContainer>
@@ -36,7 +36,7 @@ const CollectionCardNodeSection: FC<Props> = ({ subTitle, list }) => {
 					<p>Nothing to display yet</p>
 				)}
 			</CardContainer>
-		</ListSection>
+		</Container>
 	);
 };
 

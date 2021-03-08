@@ -6,7 +6,7 @@ export const CardWrapper = styled.div`
 	vertical-align: top;
 `;
 
-export const CardSections = styled.div`
+export const Container = styled.div`
 	background-color: ${(props) => props.theme.colors.cardList};
 	border-radius: 3px;
 	padding: 5px;

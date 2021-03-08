@@ -72,8 +72,9 @@ interface Props {
 	collection?: boolean;
 	list?: boolean;
 	item?: boolean;
-	text: string;
-	addNode: (title: string) => void;
+	category: string;
+	content: string;
+	addNode: (title: string, amount: number) => void;
 }
 
 export const StyledCustomButton: FC<Props> = styled(CustomButton)`

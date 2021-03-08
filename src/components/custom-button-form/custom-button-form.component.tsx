@@ -1,19 +1,20 @@
 import React, { FC, SyntheticEvent, useEffect, useRef, useState } from 'react';
 
-import { FormContainer, ButtonContainer, InputField } from './custom-button-form.styles';
+import { Container, ButtonContainer, InputField } from './custom-button-form.styles';
 
 interface Props {
 	toggleForm: () => void;
-	addNode: (title: string, amount?: number) => void;
-	item?: boolean;
+	addNode: (title: string, amount: number) => void;
 	placeholder: string;
+	item?: boolean;
 }
 
 const CustomButtonForm: FC<Props> = ({ toggleForm, addNode, placeholder, item }) => {
 	const [title, setTitle] = useState<string>('');
-	const [amount, setAmount] = useState<number>(); // FIXME: controll e.g. input type should be text and constrained with regex.
+	const [amount, setAmount] = useState<number | string>('');
 
-	const inputRef = useRef<HTMLInputElement>(null);
+	const textInputRef = useRef<HTMLInputElement>(null);
+	useEffect(() => textInputRef.current?.focus(), []);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
@@ -24,14 +25,11 @@ const CustomButtonForm: FC<Props> = ({ toggleForm, addNode, placeholder, item })
 	const handleSubmit = (event: SyntheticEvent) => {
 		event.preventDefault();
 		toggleForm();
-		if (item && title && amount) return addNode(title, amount);
-		if (title) addNode(title);
+		addNode(title, +amount || 0);
 	};
 
-	useEffect(() => inputRef.current?.focus(), []);
-
 	return (
-		<FormContainer onSubmit={handleSubmit} item={item}>
+		<Container onSubmit={handleSubmit} item={item}>
 			<InputField
 				name='title'
 				value={title}
@@ -39,7 +37,7 @@ const CustomButtonForm: FC<Props> = ({ toggleForm, addNode, placeholder, item })
 				placeholder={placeholder}
 				required
 				onChange={handleChange}
-				ref={inputRef}
+				ref={textInputRef}
 			/>
 			{item && (
 				<InputField
@@ -57,7 +55,7 @@ const CustomButtonForm: FC<Props> = ({ toggleForm, addNode, placeholder, item })
 					<p>&times;</p>
 				</button>
 			</ButtonContainer>
-		</FormContainer>
+		</Container>
 	);
 };
 
